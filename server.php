@@ -9,7 +9,7 @@
 
 // connect to the database
 	
-	$db = mysqli_connect("localhost", "it490", "it490", "it490");
+	$db = mysqli_connect("10.0.2.4:15672", "root", "root", "it490");
 	
 // if the register button is clicked
 	if (isset($_POST['register'])) {
