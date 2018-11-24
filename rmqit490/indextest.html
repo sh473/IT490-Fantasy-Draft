@@ -1,0 +1,31 @@
+<!DOCTYPE html5>
+    <head>
+        <title>Login</title>   
+        <link rel="stylesheet" href="main.css">   
+        <script>
+         function stopRKey(evt) { 
+          var evt = (evt) ? evt : ((event) ? event : null); 
+          var node = (evt.target) ? evt.target : ((evt.srcElement) ? evt.srcElement : null); 
+          if ((evt.keyCode == 13) && (node.type=="text"))  {return false;} 
+          } 
+          document.onkeypress = stopRKey; 
+        </script>
+    </head>
+    <body>
+    <fieldset>
+        <form id = "fm" action="logintest.php">
+        <p>Welcome!</p>
+        <div id="user">
+        <input type=text autocomplete=off placeholder = "username" name="username" required>Username<br>
+        </div>
+        <div id="password">
+        <input type=password autocomplete=off placeholder = "password" name="password" required>Password<br>
+        </div>
+        <div id="button">
+        <input type = submit value="Submit" ><br> <br> <br>
+	New User Register <a href="register.html">Here: </a>
+        </div>
+        </form>
+    </fieldset>
+    </body>
+</html>

@@ -1,30 +1,51 @@
-#!/usr/bin/php
 <?php
+session_start();
+if (!isset($_SESSION["user"])){
+ header( "Refresh:1; url=10.0.2.6:8080", true, 303);
+ }
 require_once('path.inc');
 require_once('get_host_info.inc');
 require_once('rabbitMQLib.inc');
-
-$client = new rabbitMQClient("testRabbitMQ.ini","testServer");
-if (isset($argv[1]))
-{
-  $msg = $argv[1];
+function login($user,$password){
+    $client = new rabbitMQClient("testRabbitMQ.ini","testServer");
+    if (isset($argv[1]))
+    {
+      $msg = $argv[1];
+    }
+    else
+    {
+      $msg = "test message";
+    }
+    $request = array();
+    $request['type'] = "login";
+    $request['user'] = $user;
+    $request['password'] = $password;
+    $request['message'] = $msg;
+    $response = $client->send_request($request);
+    
+    return $response;
+    echo "\n\n";
+    echo $argv[0]." END".PHP_EOL;
 }
-else
-{
-  $msg = "test message";
+function register($username,$password,$email){
+    $client = new rabbitMQClient("testRabbitMQ.ini","testServer");
+    if (isset($argv[1]))
+    {
+      $msg = $argv[1];
+    }
+    else
+    {
+      $msg = "test message";
+    }
+    $request = array();
+    $request['type'] = "register";
+    $request['name'] = $user;
+    $request['password'] = $pass;
+    $request['email'] = $email;
+    $request['message'] = $msg;
+    $response = $client->send_request($request);
+   
+    return $response;
+    echo "\n\n";
+    echo $argv[0]." END".PHP_EOL;
 }
-
-$request = array();
-$request['type'] = "Login";
-$request['username'] = "steve";
-$request['password'] = "password";
-$request['message'] = $msg;
-$response = $client->send_request($request);
-//$response = $client->publish($request);
-
-echo "client received response: ".PHP_EOL;
-print_r($response);
-echo "\n\n";
-
-echo $argv[0]." END".PHP_EOL;
-
