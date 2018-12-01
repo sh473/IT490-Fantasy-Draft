@@ -9,14 +9,14 @@ $user = $_POST['user'];
 $password = $_POST['password'];
 $response = login($user, $password);
 if($response == true)
-  { 
-    echo "Welcome";
-    header("Refresh:1; login.php", true, 303);
-  }
-  else
-  {
-    echo "Not Allowed";
-    header("Refresh:1; url=login.html", true, 303);
-  }
- reguire(joe.com);
+	{ 
+		$_SESSION['user'] = $user;
+    	echo "Welcome";
+    	header("Refresh:1; url=welcomepage.html", true, 303);
+  	}
+else
+ 	{
+    	echo "Not Allowed";
+    	header("Refresh:1; url=login.html", true, 303);
+  	}
 ?>

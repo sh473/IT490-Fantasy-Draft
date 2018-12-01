@@ -8,13 +8,14 @@ require_once('get_host_info.inc');
 require_once('rabbitMQLib.inc');
 function login($user,$password){
     $client = new rabbitMQClient("testRabbitMQ.ini","testServer");
+
     if (isset($argv[1]))
     {
       $msg = $argv[1];
     }
     else
     {
-      $msg = "test message";
+      $msg = "login";
     }
     $request = array();
     $request['type'] = "login";
@@ -27,7 +28,7 @@ function login($user,$password){
     echo "\n\n";
     echo $argv[0]." END".PHP_EOL;
 }
-function register($username,$password,$email){
+function reg($user,$password,$email){
     $client = new rabbitMQClient("testRabbitMQ.ini","testServer");
     if (isset($argv[1]))
     {
@@ -35,12 +36,12 @@ function register($username,$password,$email){
     }
     else
     {
-      $msg = "test message";
+      $msg = "register";
     }
     $request = array();
     $request['type'] = "register";
-    $request['name'] = $user;
-    $request['password'] = $pass;
+    $request['user'] = $user;
+    $request['password'] = $password;
     $request['email'] = $email;
     $request['message'] = $msg;
     $response = $client->send_request($request);
