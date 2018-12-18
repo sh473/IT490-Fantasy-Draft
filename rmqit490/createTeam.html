@@ -1,0 +1,16 @@
+<html>
+	<head>
+		<title>Create Team</title>
+	</head>
+	<body>
+		<form action=createTeam.php>
+			<input type=text name="teamName" id="teamName" required >Enter a team name
+			<input type=text name="teamLocation" id="teamLocation" required >Enter a team location
+			<?php
+			$txt = " " .date("y-m-d") . " " .date("h:i:sa") . " " . "Creating team";
+      		$file = file_put_contents('flog.txt', $txt);
+      		?>
+  		</form>
+		
+	</body>
+</html>

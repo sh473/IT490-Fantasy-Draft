@@ -1,0 +1,14 @@
+<html>
+	<head>
+		<title>Welcome!</title>
+	</head>
+	<body>
+		<form action=player.php>
+			<input type=text name="playerID" id="playerID" required >playerID
+			<?php
+			$txt = " " .date("y-m-d") . " " .date("h:i:sa") . " " . "Creating team";
+      		$file = file_put_contents('flog.txt', $txt, FILE_APPEND | LOCK_EX);
+      		?>
+  		</form>
+	</body>
+</html>

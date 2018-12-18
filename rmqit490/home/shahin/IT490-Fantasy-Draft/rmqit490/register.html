@@ -1,0 +1,57 @@
+<!DOCTYPE html5>
+    <head>
+        <title>Registration Screen</title>   
+        <link rel="stylesheet" href="main.css">   
+        <script>
+        function stopRKey(evt) { 
+            var evt = (evt) ? evt : ((event) ? event : null); 
+            var node = (evt.target) ? evt.target : ((evt.srcElement) ? evt.srcElement : null); 
+            if ((evt.keyCode == 13) && (node.type=="text"))  {return false;} 
+        } 
+        document.onkeypress = stopRKey; 
+        </script>
+    </head>
+    <style>
+    body {
+      background-size: 1950px 1000px;
+      background-repeat: no-repeat;
+      background-attachment: fixed;
+      font-family: Agenda-Light, Agenda Light, Agenda, Arial Narrow, sans-serif;
+      font-weight:100; 
+      color: red;
+      background-color: silver;
+      padding: 2rem;       
+      width: 33%;
+      margin:2rem;
+      font-size: 1.2rem;
+      margin-top: 6%;
+      margin-left: 33%;
+      border-radius: 15px;
+    }
+    </style>
+    <body>
+        <div style="width: 900px; margin: 150px auto 0 auto;">
+            <form id = "fm" action="register.php">
+                <h2 style="text-align: left;"> Registration </h2>
+                <div id="email">
+                    <label>Email address: </label> <input style="text-align: center;" type=text autocomplete=off placeholder="email@gmail.com" name="email" required><br>
+                </div>
+                <br/>
+                <div id="user">
+                    <label>Username: </label><input style="text-align: center;" type=text autocomplete=off placeholder="username" name="user" required><br>
+                </div>
+                <br/>
+                <div id="password">
+                    <label>Password: </label><input style="text-align: center;" type=password  autocomplete=off placeholder="password" name="password" required><br>
+                </div>
+                <br/>
+                <div id="button">
+                    <input type=submit value="Register">
+                </div>
+                <p>        
+                  Already a member? <a href="login.html">Login</a>
+                </p>
+            </form>
+        </div>
+    </body>
+</html>

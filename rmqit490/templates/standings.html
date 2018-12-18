@@ -31,7 +31,7 @@
                     <img class="team-logo" src="/static/{{ team[value["TEAM"]]["img"] }}"> {{ team[value["TEAM"]]["team-name"] }}</a></th>
                 {% else %}
                     {{ value["TEAM"] }}</a></th>
-                {% endif %}
+                {% endif %} 
                 <td class="boxscore-column-width">{{ value["W"] }}-{{ value["L"] }}</td>
                 <td>{{ value["W_PCT"] }}</td>
                 <td class="boxscore-column-width">{{ value["HOME_RECORD"] }}</td>
@@ -61,12 +61,12 @@
                 {% else %}
                     <td>{{ i }}</td>
                 {% endif %}
-                <th><a class="nounderline grey" href="/teams/{{ value["TEAM_ID"] }}">
+                <th><a class="nounderline grey" href="/teams/{{ value["TEAM_ID"] }}"> 
                 {% if value["TEAM"] in team %}
                     <img class="team-logo" src="/static/{{ team[value["TEAM"]]["img"] }}"> {{ team[value["TEAM"]]["team-name"] }}</a></th>
                 {% else %}
                     {{ value["TEAM"] }}</a></th>
-                {% endif %}
+                {% endif %} 
                 <td class="boxscore-column-width">{{ value["W"] }}-{{ value["L"] }}</td>
                 <td>{{ value["W_PCT"] }}</td>
                 <td class="boxscore-column-width">{{ value["HOME_RECORD"] }}</td>
