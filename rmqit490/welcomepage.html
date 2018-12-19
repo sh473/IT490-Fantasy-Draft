@@ -1,10 +1,22 @@
+<?php
+include ('createTeam.php');
+$teamName = $_GET["teamName"];
+
+session_start();
+if (!isset($_SESSION["user"])){
+ header( "Refresh:1; url=login.html", true, 303);
+ }
+
+echo $teamName;
+
+?>
 <html>
 	<head>
 		<title>Welcome!</title>
 	</head>
 	<body>
 		<h1>
-			Welcome! This is the home page for your fantasy draft. This is a test to push updates to testing environment.
+			Welcome! This is your homepage.
 		</h1>
 		<a href="playerSearch.html">Search a player</a> 
 		<br/>

@@ -5,6 +5,9 @@
 	<body>
 		<form action=player.php>
 			<input type=text name="playerID" id="playerID" required >playerID
+			<div id="button">
+                    <input type=submit value="Search Player">
+            </div>
 			<?php
 			$txt = " " .date("y-m-d") . " " .date("h:i:sa") . " " . "Creating team";
       		$file = file_put_contents('flog.txt', $txt, FILE_APPEND | LOCK_EX);

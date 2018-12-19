@@ -1,15 +1,6 @@
 <!DOCTYPE html5>
     <head>
-        <title>Registration Screen</title>   
-        <link rel="stylesheet" href="main.css">   
-        <script>
-        function stopRKey(evt) { 
-            var evt = (evt) ? evt : ((event) ? event : null); 
-            var node = (evt.target) ? evt.target : ((evt.srcElement) ? evt.srcElement : null); 
-            if ((evt.keyCode == 13) && (node.type=="text"))  {return false;} 
-        } 
-        document.onkeypress = stopRKey; 
-        </script>
+        <title>Registration Screen</title>      
     </head>
     <style>
     body {
@@ -32,7 +23,7 @@
     <body>
         <div style="width: 900px; margin: 150px auto 0 auto;">
             <form id = "fm" action="register.php">
-                <h2 style="text-align: left;"> Registration </h2>
+                <h2 style="text-align: left;"> Create User </h2>
                 <div id="email">
                     <label>Email address: </label> <input style="text-align: center;" type=text autocomplete=off placeholder="email@gmail.com" name="email" required><br>
                 </div>

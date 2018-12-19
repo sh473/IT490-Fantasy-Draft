@@ -3,7 +3,7 @@
 require_once('path.inc');
 require_once('get_host_info.inc');
 require_once('rabbitMQLib.inc');
-function auth($name, $password) {
+function auth($user, $password) {
     ( $db = mysqli_connect ( 'localhost', 'root', 'root', 'it490' ) );
     if (mysqli_connect_errno())
     {
@@ -17,8 +17,7 @@ function auth($name, $password) {
 $GLOBALS['ss'] = $save;
 echo $GLOBALS['ss'];
     mysqli_select_db($db, 'it490' );
-    $s = "select * from users where name = '$name' and password = SHA1('$password')";
-    //echo "The SQL statement is $s";
+    $s = "select * from users where user = '$user' and password = SHA1('$password')";
     ($t = mysqli_query ($db,$s)) or die(mysqli_error());
     $num = mysqli_num_rows($t);
     if ($num == 0){
@@ -33,11 +32,9 @@ echo $GLOBALS['ss'];
       return true;
     }
 }
-function tst(){
-return $GLOBALS['ss'];
-}
-function register($name,$password,$email) {
-    ( $db = mysqli_connect ( 'localhost', 'root', '12345678', 'it490' ) );
+
+function register($user,$password,$email) {
+    ( $db = mysqli_connect ( 'localhost', 'root', 'root', 'it490' ) );
     if (mysqli_connect_errno())
     {
       $txt = " " .date("y-m-d") . " " .date("h:i:sa") . " " . "Failed to connect to MySQL database for registration";
@@ -48,22 +45,34 @@ function register($name,$password,$email) {
     echo "Successfully connected to MySQL";
     mysqli_select_db($db, 'it490' );
     $salt = "dskjfoewiufds".$b;
-    $s = "insert into users (name,password,email) values ('$name', SHA1('$password'),'$email')";
-    //echo "The SQL statement is $s";
+    $s = "insert into users (user,password,email) values ('$user', SHA1('$password'),'$email')";
     ($t = mysqli_query ($db,$s)) or die(mysqli_error());
     $txt = " " .date("y-m-d") . " " .date("h:i:sa") . " " . "Successfully registered";
     $file = file_put_contents('log.txt', $txt);
     print "Registered";
     return true;
 }
-function test($word)
-{
-  echo $word;
-  return true;
+
+function createTeam($teamName, $teamLocation, $user){
+  if (mysqli_connect_errno())
+    {
+      $txt = " " .date("y-m-d") . " " .date("h:i:sa") . " " . "Failed to connect to MySQL database for registration";
+      $file = file_put_contents('log.txt', $txt);
+      echo"Failed to connect to MYSQL". mysqli_connect_error();
+      exit();
+    }
+    echo "Successfully connected to MySQL";
+    mysqli_select_db($db, 'it490' );
+    $salt = "dskjfoewiufds".$b;
+    $s = "insert into teams (teamName, teamLocation, user) values ('$teamName', '$teamLocation', '$user')";
+    ($t = mysqli_query ($db,$s)) or die(mysqli_error());
+    $txt = " " .date("y-m-d") . " " .date("h:i:sa") . " " . "Successfully created a team";
+    $file = file_put_contents('log.txt', $txt);
+    print "Created a team";
+    return true;
 }
 
 function playerSearch($playerID){
-<?php
 
 $request = new HttpRequest();
 $request->setUrl('https://stats.nba.com/stats/playerprofilev2');
@@ -101,13 +110,11 @@ function requestProcessor($request)
   switch ($request['type'])
   {
     case "login":
-      return auth($request['name'],$request['password']);
-    case "validate_session":
-      return doValidate($request['sessionId']);
+      return auth($request['user'],$request['password']);
+    case "createTeam":
+      return createTeam($request['teamName'],$request['teamLocation'],$request['user']);
     case "register":
-      return register($request['name'],$request['password'],$request['email']);
-    case "Test":
-      return test($request['message']);
+      return register($request['user'],$request['password'],$request['email']);
     case "playerID":
       return playerSearch($request['playerID']);
   }

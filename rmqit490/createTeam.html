@@ -6,6 +6,10 @@
 		<form action=createTeam.php>
 			<input type=text name="teamName" id="teamName" required >Enter a team name
 			<input type=text name="teamLocation" id="teamLocation" required >Enter a team location
+			<input type=text name="user" id="user" required >Enter your username
+			<div id="button">
+            	<input type=submit value="Create Team">
+            </div>
 			<?php
 			$txt = " " .date("y-m-d") . " " .date("h:i:sa") . " " . "Creating team";
       		$file = file_put_contents('flog.txt', $txt);
