@@ -3,7 +3,7 @@
 require_once('path.inc');
 require_once('get_host_info.inc');
 require_once('rabbitMQLib.inc');
-function auth($user, $password) {
+function login($user, $password) {
     ( $db = mysqli_connect ( 'localhost', 'root', 'root', 'it490' ) );
     if (mysqli_connect_errno())
     {
@@ -12,10 +12,6 @@ function auth($user, $password) {
       echo "Failed to connect to MYSQL". mysqli_connect_error();
       exit();
     }
-    $save ="Successfully connected to MySQL<br><br>";
-  echo $save;
-$GLOBALS['ss'] = $save;
-echo $GLOBALS['ss'];
     mysqli_select_db($db, 'it490' );
     $s = "select * from users where user = '$user' and password = SHA1('$password')";
     ($t = mysqli_query ($db,$s)) or die(mysqli_error());
@@ -42,7 +38,6 @@ function register($user,$password,$email) {
       echo"Failed to connect to MYSQL". mysqli_connect_error();
       exit();
     }
-    echo "Successfully connected to MySQL";
     mysqli_select_db($db, 'it490' );
     $salt = "dskjfoewiufds".$b;
     $s = "insert into users (user,password,email) values ('$user', SHA1('$password'),'$email')";
@@ -61,7 +56,6 @@ function createTeam($teamName, $teamLocation, $user){
       echo"Failed to connect to MYSQL". mysqli_connect_error();
       exit();
     }
-    echo "Successfully connected to MySQL";
     mysqli_select_db($db, 'it490' );
     $salt = "dskjfoewiufds".$b;
     $s = "insert into teams (teamName, teamLocation, user) values ('$teamName', '$teamLocation', '$user')";
@@ -110,7 +104,7 @@ function requestProcessor($request)
   switch ($request['type'])
   {
     case "login":
-      return auth($request['user'],$request['password']);
+      return login($request['user'],$request['password']);
     case "createTeam":
       return createTeam($request['teamName'],$request['teamLocation'],$request['user']);
     case "register":

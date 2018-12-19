@@ -1,13 +1,9 @@
 <?php
-include ('createTeam.php');
-$teamName = $_GET["teamName"];
 
 session_start();
 if (!isset($_SESSION["user"])){
  header( "Refresh:1; url=login.html", true, 303);
  }
-
-echo $teamName;
 
 ?>
 <html>
